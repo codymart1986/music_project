@@ -7,7 +7,7 @@ class SongSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'artist', 'album', 'release_date']
 
     def create(self, validated_data):
-        return Song.object.create(**validated_data)
+        return Song.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)

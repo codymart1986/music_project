@@ -37,8 +37,9 @@ class SongDetail(APIView):
     def put(self, request, pk):
         song = self.get_song(pk)
         serializer = SongSerializer(song, data=request.data)
-        if serializer.is_valide():
-            serializer.save
+        if serializer.is_valid():
+            serializer.update(song, request.data)
+            serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
